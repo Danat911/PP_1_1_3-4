@@ -1,13 +1,12 @@
 package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.dao.UserDao;
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
-import jm.task.core.jdbc.util.Util;
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 
 public class Main {
     public static void main(String[] args) {
-        Util.getConnection();
-        UserDao userDao = new UserDaoJDBCImpl();
+        //Util.getSessionFactory();
+        UserDao userDao = new UserDaoHibernateImpl();
 
         userDao.createUsersTable();
 
@@ -18,8 +17,8 @@ public class Main {
 
         userDao.removeUserById(1);
         userDao.removeUserById(2);
-        System.out.println(userDao.getAllUsers());
+        userDao.getAllUsers();
         userDao.cleanUsersTable();
         userDao.dropUsersTable();// реализуйте алгоритм здесь
-    }
+      }
 }
